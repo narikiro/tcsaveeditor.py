@@ -27,6 +27,11 @@ save.create_teleport_wire(TCPoint(0, 0), TCPoint(2, 0))
 ```
 which creates a teleport wire between the points `(0, 0)` and `(2, 0)`. Check out `create_teleport_wire()` to see the remaining parameters available for wires.
 
+### Showcase
+Conway's Game of Life - Turing Complete
+The save editor script was used to generate the teleport wires to connect the major subsystems, as well as load the initial configuration into the constants at the bottom.
+![Game of Life](imgs/tcgol.jpg?raw=true)
+
 #### Notes
 - If the schematic you are editing is currently open in-game, you will need to switch to a different schematic and reload that schematic to see any changes.
 - Right now the wire body data is read as-is, rather than converted to a collection of points. Most applications right now involve using teleport wires anyway, so this shouldn\'t be a problem.
