@@ -500,7 +500,7 @@ class TCSave:
         self._write(0, 2) # Write (currently) unused
         self._write(len(self.player_data), 2)
         for player_d in self.player_data:
-            self._write(player_d, 1)
+            self._write_byte(player_d)
         self._write_string(self.hub_description)
         self._write(len(self.components), 8)
         for comp in self.components:
@@ -561,13 +561,13 @@ class TCSave:
     def _get_string(self) -> str:
         return self._bytes_io.read(int.from_bytes(self._bytes_io.read(2), 'little')).decode('ascii')
     
-    def _get_int(self, n_bytes: int):
+    def _get_int(self, n_bytes: int) -> int:
         return int.from_bytes(self._bytes_io.read(n_bytes), 'little')
     
-    def _get_signed_int(self, n_bytes: int):
+    def _get_signed_int(self, n_bytes: int) -> int:
         return int.from_bytes(self._bytes_io.read(n_bytes), 'little', signed=True)
     
-    def _get_byte(self):
+    def _get_byte(self) -> bytes:
         return self._bytes_io.read(1)
     
     def _get_bool(self):
@@ -593,6 +593,9 @@ class TCSave:
     
     def _write(self, data, bytes: int):
         self._bytes_io.write(data.to_bytes(bytes, 'little'))
+    
+    def _write_byte(self, data: bytes):
+        self._bytes_io.write(data)
     
     def _write_signed(self, data, bytes: int):
         self._bytes_io.write(data.to_bytes(bytes, 'little', signed=True))
