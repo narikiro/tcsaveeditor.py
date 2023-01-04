@@ -22,7 +22,7 @@ Check out `TCComponent` to see the rest of the parameters available when creatin
 Note that you can also run `print()` against the different save objects to get some basic information about them (try `print(save)`).
 
 Also built-in is functionality for creating teleport wires:
-```
+```python
 save.create_teleport_wire(TCPoint(0, 0), TCPoint(2, 0))
 ```
 which creates a teleport wire between the points `(0, 0)` and `(2, 0)`. Check out `create_teleport_wire()` to see the remaining parameters available for wires.
