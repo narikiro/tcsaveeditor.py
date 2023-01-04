@@ -570,7 +570,7 @@ class TCSave:
     def _get_byte(self) -> bytes:
         return self._bytes_io.read(1)
     
-    def _get_bool(self):
+    def _get_bool(self) -> bool:
         return bool(int.from_bytes(self._bytes_io.read(1), 'little'))
     
     def _get_point(self) -> TCPoint:
