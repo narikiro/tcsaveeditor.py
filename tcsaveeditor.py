@@ -559,7 +559,7 @@ class TCSave:
         self.wires.append(TCWire(kind, color, comment, TCWirePath(start, [TELEPORT_WIRE], end)))
     
     def _get_string(self) -> str:
-        return self._bytes_io.read(int.from_bytes(self._bytes_io.read(2), 'little')).decode('ascii')
+        return self._bytes_io.read(int.from_bytes(self._bytes_io.read(2), 'little')).decode('utf-8')
     
     def _get_int(self, n_bytes: int) -> int:
         return int.from_bytes(self._bytes_io.read(n_bytes), 'little')
@@ -601,8 +601,9 @@ class TCSave:
         self._bytes_io.write(data.to_bytes(bytes, 'little', signed=True))
 
     def _write_string(self, string: str):
-        self._bytes_io.write(len(string).to_bytes(2, 'little'))
-        self._bytes_io.write(bytes(string, 'ascii'))
+        byte_str = bytes(string, 'utf-8')
+        self._bytes_io.write(len(byte_str).to_bytes(2, 'little'))
+        self._bytes_io.write(byte_str)
 
     def _write_point(self, tc_point: TCPoint):
         self._bytes_io.write(tc_point.x.to_bytes(2, 'little', signed=True))
